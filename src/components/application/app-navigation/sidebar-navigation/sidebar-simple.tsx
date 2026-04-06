@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
+import { MidwesternLogo } from "@/components/foundations/logo/midwestern-logo";
 import { cx } from "@/utils/cx";
 import { MobileNavigationHeader } from "../base-components/mobile-header";
 import { NavAccountCard } from "../base-components/nav-account-card";
@@ -51,7 +51,7 @@ export const SidebarNavigationSimple = ({
             )}
         >
             <div className="flex flex-col gap-5 px-4 lg:px-5">
-                <UntitledLogo className="h-6" />
+                <MidwesternLogo variant="primary" colorScheme="dark" height={28} />
             </div>
 
             <NavList activeUrl={activeUrl} items={items} />
