@@ -1,35 +1,85 @@
-import { ColorSwatch } from "@/site/shared/color-swatch";
+import { useState } from "react";
+import { Check, Copy01 } from "@untitledui/icons";
 import { CodeBlock } from "@/site/shared/code-block";
 
-const PRIMARY_COLORS = [
-    { name: "Deep Navy", hex: "#0A1628", usage: "Primary dark background" },
-    { name: "Navy", hex: "#1B2E4B", usage: "Secondary dark background" },
-    { name: "Brand Blue", hex: "#1E4DB7", usage: "Interactive brand color" },
-    { name: "Bright Blue", hex: "#2563EB", usage: "Primary CTA, links" },
-    { name: "Light Blue", hex: "#DBEAFE", usage: "Subtle brand backgrounds" },
-    { name: "Off White", hex: "#F8FAFF", usage: "Page backgrounds" },
+const ColorCard = ({ name, hex, token, usage, light }: ColorCard) => {
+    const [copied, setCopied] = useState(false);
+    const handleCopy = () => {
+        navigator.clipboard.writeText(hex);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
+    return (
+        <button
+            type="button"
+            onClick={handleCopy}
+            className="group flex flex-col overflow-hidden rounded-xl border border-secondary text-left transition duration-100 ease-linear hover:shadow-md focus-visible:outline-2 focus-visible:outline-brand"
+        >
+            {/* Swatch */}
+            <div className="h-20 w-full relative" style={{ backgroundColor: hex }}>
+                <span className={`absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition duration-100 ease-linear flex items-center gap-1 text-xs px-2 py-1 rounded-md font-medium ${light ? "bg-black/10 text-black/70" : "bg-white/15 text-white/80"}`}>
+                    {copied ? <Check className="size-3" /> : <Copy01 className="size-3" />}
+                    {copied ? "Copied" : hex}
+                </span>
+            </div>
+            {/* Info */}
+            <div className="flex flex-col gap-1 px-3.5 py-3 bg-primary">
+                <span className="text-sm font-semibold text-primary">{name}</span>
+                <span className="text-xs font-mono text-tertiary">{token}</span>
+                <span className="text-xs text-quaternary leading-snug">{usage}</span>
+            </div>
+        </button>
+    );
+};
+
+interface ColorCard {
+    name: string;
+    hex: string;
+    token: string;
+    usage: string;
+    light?: boolean; // use dark text on the swatch
+}
+
+const BRAND_COLORS: ColorCard[] = [
+    { name: "Brand Blue",   hex: "#2237F1", token: "--mw-blue",        usage: "Primary CTAs, links, focus rings" },
+    { name: "Navy",         hex: "#1A2CD1", token: "--mw-navy",        usage: "Hover state for brand blue" },
+    { name: "Electric Lime",hex: "#C7FA50", token: "--mw-green",       usage: "Dark mode accent, highlights", light: true },
+    { name: "Brand 50",     hex: "#ECEEFF", token: "--color-brand-50",  usage: "Subtle brand backgrounds", light: true },
+    { name: "Brand 100",    hex: "#D5D9FD", token: "--color-brand-100", usage: "Brand tints, badges", light: true },
+    { name: "Brand 900",    hex: "#0E1880", token: "--color-brand-900", usage: "Dark brand text" },
 ];
 
-const NEUTRAL_COLORS = [
-    { name: "White", hex: "#FFFFFF", usage: "Backgrounds, cards" },
-    { name: "Near Black", hex: "#09090B", usage: "Primary text" },
-    { name: "Body Secondary", hex: "#6B7280", usage: "Secondary text" },
-    { name: "Border", hex: "#E5E7EB", usage: "Borders, dividers" },
+const BASE_COLORS: ColorCard[] = [
+    { name: "Off White",    hex: "#F6F7FE", token: "--mw-white",       usage: "Page backgrounds, cards", light: true },
+    { name: "Near Black",   hex: "#010313", token: "--mw-black",       usage: "Primary text, dark backgrounds" },
+    { name: "Muted Light",  hex: "#E8E9F4", token: "--mw-muted-light", usage: "Borders, surface tints", light: true },
+    { name: "Gray Light",   hex: "#A9A9A9", token: "--mw-gray-light",  usage: "Placeholder text, inactive icons", light: true },
+    { name: "Muted",        hex: "#666666", token: "--mw-muted",       usage: "Secondary text, captions", light: true },
 ];
 
-const cssVariablesCode = `/* Add to your theme.css */
---color-brand-25: rgb(248 250 255);
---color-brand-50: rgb(235 242 255);
---color-brand-100: rgb(210 225 255);
---color-brand-200: rgb(165 195 255);
---color-brand-300: rgb(115 160 255);
---color-brand-400: rgb(66 125 240);
---color-brand-500: rgb(37 99 235);   /* Base */
---color-brand-600: rgb(30 77 183);   /* Primary interactive */
---color-brand-700: rgb(27 62 150);
---color-brand-800: rgb(10 22 40);
---color-brand-900: rgb(7 15 28);
---color-brand-950: rgb(4 8 16);`;
+const STATUS_COLORS: ColorCard[] = [
+    { name: "Danger Red",   hex: "#CC1838", token: "--mw-danger",      usage: "Error states, destructive actions" },
+    { name: "Success Green",hex: "#407E0B", token: "--mw-success",     usage: "Success states, positive indicators" },
+    { name: "Warning",      hex: "#DC6803", token: "--color-warning-600", usage: "Warning states, alerts", light: true },
+];
+
+const cssVariablesCode = `/* Midwestern brand primitives — src/styles/theme.css */
+--mw-white:       #F6F7FE;   /* off-white, warm blue tint */
+--mw-black:       #010313;   /* near-black, deep navy */
+--mw-blue:        #2237F1;   /* primary brand blue */
+--mw-navy:        #1A2CD1;   /* darker blue, hover state */
+--mw-green:       #C7FA50;   /* electric lime — dark mode accent */
+--mw-muted-light: #E8E9F4;   /* light surface */
+--mw-muted:       #666666;   /* mid gray */
+--mw-gray-light:  #A9A9A9;   /* light gray */
+--mw-danger:      #CC1838;   /* error/danger red */
+--mw-success:     #407E0B;   /* success green */
+
+/* Brand blue scale */
+--color-brand-600: #2237F1;  /* primary interactive */
+--color-brand-700: #1A2CD1;  /* hover */
+--color-brand-50:  #ECEEFF;  /* subtle bg */
+--color-brand-100: #D5D9FD;  /* tint */`;
 
 const typographyCode = `/* Font stack */
 font-family: var(--font-body);    /* Inter, system-ui, sans-serif */
@@ -97,28 +147,42 @@ export const BrandPage = () => {
     return (
         <div className="flex flex-col gap-20 max-w-5xl">
             {/* Colors */}
-            <section id="colors" className="scroll-mt-8 flex flex-col gap-8">
+            <section id="colors" className="scroll-mt-8 flex flex-col gap-10">
                 <div className="flex flex-col gap-2">
                     <p className="text-xs font-semibold uppercase tracking-widest text-brand-secondary">01</p>
                     <h2 className="text-3xl font-semibold text-primary">Colors</h2>
                     <p className="text-md text-tertiary max-w-2xl">
                         The Midwestern palette anchors every interface. Use brand blue for primary actions,
-                        deep navy for dark surfaces, and neutrals for everything in between.
+                        deep navy for dark surfaces, and electric lime for dark mode accents.
                     </p>
                 </div>
 
-                <div className="flex flex-col gap-6">
-                    <h3 className="text-sm font-semibold uppercase tracking-wide text-secondary">Primary</h3>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-                        {PRIMARY_COLORS.map((color) => (
-                            <ColorSwatch key={color.name} {...color} />
+                {/* Brand */}
+                <div className="flex flex-col gap-4">
+                    <h3 className="text-xs font-semibold uppercase tracking-widest text-quaternary">Brand</h3>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        {BRAND_COLORS.map((color) => (
+                            <ColorCard key={color.name} {...color} />
                         ))}
                     </div>
+                </div>
 
-                    <h3 className="text-sm font-semibold uppercase tracking-wide text-secondary">Neutrals</h3>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                        {NEUTRAL_COLORS.map((color) => (
-                            <ColorSwatch key={color.name} {...color} />
+                {/* Base */}
+                <div className="flex flex-col gap-4">
+                    <h3 className="text-xs font-semibold uppercase tracking-widest text-quaternary">Base</h3>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        {BASE_COLORS.map((color) => (
+                            <ColorCard key={color.name} {...color} />
+                        ))}
+                    </div>
+                </div>
+
+                {/* Status */}
+                <div className="flex flex-col gap-4">
+                    <h3 className="text-xs font-semibold uppercase tracking-widest text-quaternary">Status</h3>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        {STATUS_COLORS.map((color) => (
+                            <ColorCard key={color.name} {...color} />
                         ))}
                     </div>
                 </div>
