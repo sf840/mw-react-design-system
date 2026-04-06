@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useLocation, Outlet } from "react-router";
 import {
     BookOpen01,
@@ -14,8 +15,8 @@ import type { NavItemType } from "@/components/application/app-navigation/config
 const NAV_ITEMS: NavItemType[] = [
     { label: "Introduction", href: "/introduction", icon: BookOpen01 },
 
-    // Brand section header
-    { label: "Brand", divider: true },
+    // Resources section header
+    { label: "Resources", divider: true },
     { label: "01 Colors", href: "/brand#colors", icon: Palette },
     { label: "02 Typography", href: "/brand#typography", icon: Type01 },
     { label: "03 Logo & Imagery", href: "/brand#logo", icon: Image01 },
@@ -23,8 +24,8 @@ const NAV_ITEMS: NavItemType[] = [
     { label: "05 Tokens", href: "/brand#tokens", icon: Code02 },
     { label: "06 Brand Voice", href: "/brand#voice", icon: Edit01 },
 
-    // Base components section header
-    { label: "Base components", divider: true },
+    // Components section header
+    { label: "Components", divider: true },
     { label: "Avatars", href: "/components/avatars" },
     { label: "Badge groups", href: "/components/badge-groups" },
     { label: "Badges", href: "/components/badges" },
@@ -44,8 +45,6 @@ const NAV_ITEMS: NavItemType[] = [
     { label: "Toggles", href: "/components/toggles" },
     { label: "Tooltips", href: "/components/tooltips" },
 
-    // Application UI section header
-    { label: "Application UI", divider: true },
     { label: "Alerts", href: "/components/alerts" },
     { label: "Modal", href: "/components/modals" },
     { label: "Tables", href: "/components/tables" },
@@ -55,7 +54,17 @@ const NAV_ITEMS: NavItemType[] = [
 
 export const SiteLayout = () => {
     const location = useLocation();
-    const activeUrl = location.pathname;
+    const activeUrl = location.pathname + location.hash;
+
+    useEffect(() => {
+        if (location.hash) {
+            const id = location.hash.slice(1);
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+    }, [location.hash, location.pathname]);
 
     return (
         <div className="flex min-h-screen bg-primary">

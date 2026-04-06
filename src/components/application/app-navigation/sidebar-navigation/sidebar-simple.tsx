@@ -1,6 +1,4 @@
 import type { ReactNode } from "react";
-import { SearchLg } from "@untitledui/icons";
-import { Input } from "@/components/base/input/input";
 import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
 import { cx } from "@/utils/cx";
 import { MobileNavigationHeader } from "../base-components/mobile-header";
@@ -47,19 +45,13 @@ export const SidebarNavigationSimple = ({
                 } as React.CSSProperties
             }
             className={cx(
-                "flex h-full w-full max-w-full flex-col justify-between overflow-auto bg-primary pt-4 lg:w-(--width) lg:pt-5",
+                "flex h-full w-full max-w-full flex-col justify-between overflow-y-auto bg-primary pt-4 lg:w-(--width) lg:pt-5 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]",
                 !hideBorder && "border-secondary md:border-r",
                 className,
             )}
         >
             <div className="flex flex-col gap-5 px-4 lg:px-5">
                 <UntitledLogo className="h-6" />
-
-                {/* Mobile search input */}
-                <Input size="md" aria-label="Search" placeholder="Search" icon={SearchLg} className="md:hidden" />
-
-                {/* Desktop search input */}
-                <Input shortcut size="sm" aria-label="Search" placeholder="Search" icon={SearchLg} className="max-md:hidden" />
             </div>
 
             <NavList activeUrl={activeUrl} items={items} />

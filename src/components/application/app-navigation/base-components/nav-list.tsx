@@ -21,7 +21,11 @@ export const NavList = ({ activeUrl, items, className }: NavListProps) => {
         <ul className={cx("flex flex-col px-4 pt-5", className)}>
             {items.map((item, index) => {
                 if (item.divider) {
-                    return (
+                    return item.label ? (
+                        <li key={index} className="w-full px-2 pb-1 pt-5">
+                            <p className="text-xs font-semibold uppercase tracking-wider text-quaternary">{item.label}</p>
+                        </li>
+                    ) : (
                         <li key={index} className="w-full px-0.5 py-2">
                             <hr className="h-px w-full border-none bg-border-secondary" />
                         </li>
@@ -70,7 +74,7 @@ export const NavList = ({ activeUrl, items, className }: NavListProps) => {
                             badge={item.badge}
                             icon={item.icon}
                             href={item.href}
-                            current={currentItem?.href === item.href}
+                            current={item.href === activeUrl}
                             open={open && currentItem?.href === item.href}
                         >
                             {item.label}
