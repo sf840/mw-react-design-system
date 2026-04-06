@@ -32,7 +32,7 @@ export const DropdownButtonLink = () => {
                     <Dropdown.Section
                         selectionMode="single"
                         selectedKeys={[selectedPermission]}
-                        onSelectionChange={(keys) => setSelectedPermission(typeof keys === "string" ? keys : (keys.keys().toArray()[0] as string))}
+                        onSelectionChange={(keys) => setSelectedPermission(typeof keys === "string" ? keys : ([...keys.keys()][0] as string))}
                     >
                         {permissions.map((permission) => (
                             <Dropdown.Item key={permission.id} id={permission.id}>
