@@ -8,6 +8,7 @@ import {
     Type01,
     Palette,
     Ruler,
+    Star01,
 } from "@untitledui/icons";
 import { SidebarNavigationSimple } from "@/components/application/app-navigation/sidebar-navigation/sidebar-simple";
 import type { NavItemType } from "@/components/application/app-navigation/config";
@@ -23,6 +24,7 @@ const NAV_ITEMS: NavItemType[] = [
     { label: "04 Spacing", href: "/brand#spacing", icon: Ruler },
     { label: "05 Tokens", href: "/brand#tokens", icon: Code02 },
     { label: "06 Brand Voice", href: "/brand#voice", icon: Edit01 },
+    { label: "07 Icons", href: "/icons", icon: Star01 },
 
     // Components section header
     { label: "Components", divider: true },

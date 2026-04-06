@@ -45,34 +45,41 @@ export const SidebarNavigationSimple = ({
                 } as React.CSSProperties
             }
             className={cx(
-                "flex h-full w-full max-w-full flex-col justify-between overflow-y-auto bg-primary pt-4 lg:w-(--width) lg:pt-5 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]",
+                "flex h-full w-full max-w-full flex-col bg-primary lg:w-(--width)",
                 !hideBorder && "border-secondary md:border-r",
                 className,
             )}
         >
-            <div className="flex flex-col gap-5 px-4 lg:px-5">
+            {/* Fixed logo header — does not scroll */}
+            <div className="shrink-0 px-4 lg:px-5 pt-4 lg:pt-5 pb-4">
                 <MidwesternLogo variant="primary" colorScheme="dark" height={28} />
             </div>
 
-            <NavList activeUrl={activeUrl} items={items} />
-
-            <div className="mt-auto flex flex-col gap-3 px-4 py-4 lg:py-5">
-                {footerItems.length > 0 && (
-                    <ul className="flex flex-col">
-                        {footerItems.map((item) => (
-                            <li key={item.label} className="py-px">
-                                <NavItemBase badge={item.badge} icon={item.icon} href={item.href} type="link" current={item.href === activeUrl}>
-                                    {item.label}
-                                </NavItemBase>
-                            </li>
-                        ))}
-                    </ul>
-                )}
-
-                {featureCard}
-
-                {showAccountCard && <NavAccountCard />}
+            {/* Scrollable nav list */}
+            <div className="flex-1 overflow-y-auto [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+                <NavList activeUrl={activeUrl} items={items} />
             </div>
+
+            {/* Fixed footer */}
+            {(footerItems.length > 0 || featureCard || showAccountCard) && (
+                <div className="shrink-0 flex flex-col gap-3 px-4 py-4 lg:py-5">
+                    {footerItems.length > 0 && (
+                        <ul className="flex flex-col">
+                            {footerItems.map((item) => (
+                                <li key={item.label} className="py-px">
+                                    <NavItemBase badge={item.badge} icon={item.icon} href={item.href} type="link" current={item.href === activeUrl}>
+                                        {item.label}
+                                    </NavItemBase>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+
+                    {featureCard}
+
+                    {showAccountCard && <NavAccountCard />}
+                </div>
+            )}
         </aside>
     );
 

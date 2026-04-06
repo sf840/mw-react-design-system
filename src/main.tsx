@@ -29,6 +29,7 @@ import { ModalsPage } from "@/site/pages/components/modals-page";
 import { TablesPage } from "@/site/pages/components/tables-page";
 import { TabsPage } from "@/site/pages/components/tabs-page";
 import { SidebarNavPage } from "@/site/pages/components/sidebar-nav-page";
+import { IconsPage } from "@/site/pages/icons-page";
 import "@/styles/globals.css";
 
 createRoot(document.getElementById("root")!).render(
@@ -64,6 +65,7 @@ createRoot(document.getElementById("root")!).render(
                             <Route path="components/tables" element={<TablesPage />} />
                             <Route path="components/tabs" element={<TabsPage />} />
                             <Route path="components/sidebar-nav" element={<SidebarNavPage />} />
+                            <Route path="icons" element={<IconsPage />} />
                         </Route>
                     </Routes>
                 </RouteProvider>
