@@ -96,14 +96,6 @@ const TYPE_SCALE = [
 export const BrandPage = () => {
     return (
         <div className="flex flex-col gap-20 max-w-5xl">
-            {/* Hero */}
-            <div className="rounded-2xl bg-brand-section px-12 py-16 text-center">
-                <h1 className="text-4xl font-bold text-primary_on-brand">Build on brand, every time.</h1>
-                <p className="mt-4 text-lg text-secondary_on-brand max-w-xl mx-auto">
-                    The Midwestern brand system — colors, typography, spacing, and voice — designed to keep every product consistent.
-                </p>
-            </div>
-
             {/* Colors */}
             <section id="colors" className="scroll-mt-8 flex flex-col gap-8">
                 <div className="flex flex-col gap-2">
