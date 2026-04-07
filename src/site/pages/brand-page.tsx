@@ -1,24 +1,7 @@
 import { XClose } from "@untitledui/icons";
-import { CodeBlock } from "@/site/shared/code-block";
 import { MidwesternLogo } from "@/components/foundations/logo/midwestern-logo";
 import { BrandColorsSection } from "@/site/pages/brand-colors-section";
-
-const typographyCode = `/* Font stack */
-font-family: var(--font-body);    /* TT Hoves, DM Sans, system-ui */
-font-family: var(--font-display); /* TT Hoves, DM Sans, system-ui */
-font-family: var(--font-mono);    /* JetBrains Mono, monospace */
-
-/* Type scale */
-font-size: var(--text-xs);         /* 12px */
-font-size: var(--text-sm);         /* 14px */
-font-size: var(--text-md);         /* 16px */
-font-size: var(--text-lg);         /* 18px */
-font-size: var(--text-xl);         /* 20px */
-font-size: var(--text-display-xs); /* 24px */
-font-size: var(--text-display-sm); /* 30px */
-font-size: var(--text-display-md); /* 36px */
-font-size: var(--text-display-lg); /* 48px */
-font-size: var(--text-display-xl); /* 60px */`;
+import { BrandTypographySection } from "@/site/pages/brand-typography-section";
 
 const spacingCode = `/* Spacing scale (Tailwind) */
 gap-1   →  4px   (xs)
@@ -55,15 +38,6 @@ const SPACING_SCALE = [
     { label: "64px", size: "4xl", tw: "16", bars: 16 },
 ];
 
-const TYPE_SCALE = [
-    { name: "Display 2XL", size: "60px", weight: "700", lineHeight: "72px", sample: "Aa" },
-    { name: "Display LG", size: "48px", weight: "700", lineHeight: "60px", sample: "Heading" },
-    { name: "Display MD", size: "36px", weight: "600", lineHeight: "44px", sample: "Section title" },
-    { name: "Heading", size: "24px", weight: "600", lineHeight: "32px", sample: "Card heading" },
-    { name: "Body LG", size: "18px", weight: "400", lineHeight: "28px", sample: "Intro paragraph text that reads naturally at this size." },
-    { name: "Body", size: "16px", weight: "400", lineHeight: "24px", sample: "Standard body copy for paragraphs and descriptions." },
-    { name: "Label / Eyebrow", size: "12px", weight: "600", lineHeight: "16px", sample: "SECTION LABEL" },
-];
 
 export const BrandPage = () => {
     return (
@@ -74,37 +48,7 @@ export const BrandPage = () => {
             <div className="border-t border-dashed border-secondary" />
 
             {/* Typography */}
-            <section id="typography" className="scroll-mt-8 flex flex-col gap-8">
-                <div className="flex flex-col gap-2">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-brand-secondary">02</p>
-                    <h2 className="text-3xl font-semibold text-primary">Typography</h2>
-                    <p className="text-md text-tertiary max-w-2xl">
-                        A clear type scale creates visual hierarchy and readable interfaces.
-                    </p>
-                </div>
-
-                <div className="overflow-hidden rounded-xl border border-secondary divide-y divide-secondary">
-                    {TYPE_SCALE.map(({ name, size, weight, lineHeight, sample }) => (
-                        <div key={name} className="flex items-center gap-8 p-5 bg-primary">
-                            <div className="w-40 shrink-0">
-                                <p className="text-sm font-semibold text-primary">{name}</p>
-                                <p className="text-xs text-tertiary">{size} / {weight} / {lineHeight}</p>
-                            </div>
-                            <p
-                                className="text-primary truncate"
-                                style={{ fontSize: size, fontWeight: weight, lineHeight }}
-                            >
-                                {sample}
-                            </p>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="flex flex-col gap-3">
-                    <h3 className="text-base font-semibold text-secondary">CSS variables</h3>
-                    <CodeBlock code={typographyCode} />
-                </div>
-            </section>
+            <BrandTypographySection />
 
             <div className="border-t border-dashed border-secondary" />
 
