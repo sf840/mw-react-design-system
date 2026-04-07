@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
+import { Moon01, Sun } from "@untitledui/icons";
 import { MidwesternLogo } from "@/components/foundations/logo/midwestern-logo";
+import { useTheme } from "@/providers/theme-provider";
 import { cx } from "@/utils/cx";
 import { MobileNavigationHeader } from "../base-components/mobile-header";
 import { NavAccountCard } from "../base-components/nav-account-card";
@@ -26,6 +28,25 @@ interface SidebarNavigationProps {
     avatarRounded?: boolean;
 }
 
+const SidebarHeader = () => {
+    const { theme, setTheme } = useTheme();
+    const isDark = theme === "dark";
+
+    return (
+        <div className="shrink-0 flex items-center justify-between px-4 lg:px-5 pt-4 lg:pt-5 pb-4">
+            <MidwesternLogo variant="primary" colorScheme={isDark ? "light" : "dark"} height={24} />
+            <button
+                type="button"
+                onClick={() => setTheme(isDark ? "light" : "dark")}
+                aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+                className="flex size-8 items-center justify-center rounded-lg text-quaternary transition duration-100 ease-linear hover:bg-secondary hover:text-tertiary"
+            >
+                {isDark ? <Sun className="size-4" /> : <Moon01 className="size-4" />}
+            </button>
+        </div>
+    );
+};
+
 export const SidebarNavigationSimple = ({
     activeUrl,
     items,
@@ -51,9 +72,7 @@ export const SidebarNavigationSimple = ({
             )}
         >
             {/* Fixed logo header — does not scroll */}
-            <div className="shrink-0 px-4 lg:px-5 pt-4 lg:pt-5 pb-4">
-                <MidwesternLogo variant="primary" colorScheme="dark" height={28} />
-            </div>
+            <SidebarHeader />
 
             {/* Scrollable nav list */}
             <div className="flex-1 overflow-y-auto [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
