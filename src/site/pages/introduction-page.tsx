@@ -1,116 +1,159 @@
 import {
-    CheckCircle,
-    Package,
-    Code02,
-    Grid01,
+    LayersTwo01,
     Palette,
+    Type01,
+    Code02,
+    GitBranch01,
+    Sun,
+    LinkExternal01,
 } from "@untitledui/icons";
-import { Badge } from "@/components/base/badges/badges";
+import { Button } from "@/components/base/buttons/button";
 import { CodeBlock } from "@/site/shared/code-block";
 
-const COMPONENTS = [
-    "Avatars", "Badge groups", "Badges", "Button groups", "Buttons",
-    "Checkboxes", "Dropdowns", "Inputs", "Progress indicators",
-    "Radio buttons", "Radio groups", "Select", "Multi-select",
-    "Sliders", "Tags", "Textarea", "Toggles", "Tooltips",
-    "Alerts", "Modal", "Tables", "Tabs", "Sidebar nav",
+const INCLUDED = [
+    {
+        icon: LayersTwo01,
+        title: "23 components",
+        description: "Avatars, buttons, inputs, modals, tables, and more — ready to use.",
+    },
+    {
+        icon: Palette,
+        title: "Brand tokens",
+        description: "Full color system with light and dark mode built in.",
+    },
+    {
+        icon: Type01,
+        title: "TT Hoves typeface",
+        description: "Midwestern's primary font applied across all components.",
+    },
+    {
+        icon: Code02,
+        title: "React + TypeScript",
+        description: "Built on Vite, Tailwind CSS v4, and React Aria.",
+    },
+    {
+        icon: GitBranch01,
+        title: "Open source",
+        description: "MIT licensed. Fork it, extend it, make it yours.",
+    },
+    {
+        icon: Sun,
+        title: "Light & dark mode",
+        description: "Theme toggle built in, tokens ready for both.",
+    },
 ];
 
-const TECH_STACK = [
-    { name: "React 19", description: "Latest React with concurrent features", icon: Code02 },
-    { name: "TypeScript", description: "Full type safety throughout", icon: Code02 },
-    { name: "Tailwind CSS v4", description: "Utility-first CSS framework", icon: Palette },
-    { name: "React Aria", description: "Accessible component primitives", icon: Grid01 },
-    { name: "Vite", description: "Next-generation build tool", icon: Package },
+const QUICK_LINKS = [
+    { label: "Browse all components", href: "/components/buttons", external: false },
+    { label: "Colors & brand tokens", href: "/brand#colors", external: false },
+    { label: "Typography", href: "/brand#typography", external: false },
+    { label: "Logo & imagery", href: "/brand#logo", external: false },
+    { label: "GitHub repository", href: "https://github.com/sf840/mw-react-design-system", external: true },
 ];
 
-const installCode = `# Install dependencies
-bun install
+const usageCode = `import { Button } from '@/components/base/buttons/button';
+import { Input } from '@/components/base/input/input';
+import { Badge } from '@/components/base/badges/badges';
 
-# Start development server
-bun run dev`;
-
-const usageCode = `import { Button } from "@/components/base/buttons/button";
-import { Input } from "@/components/base/input/input";
-import { Badge } from "@/components/base/badges/badges";
-
-export function MyComponent() {
+export function Example() {
   return (
-    <div className="flex flex-col gap-4">
-      <Input label="Email" placeholder="you@example.com" />
-      <Button color="primary" size="md">Submit</Button>
-      <Badge color="success">Active</Badge>
+    <div className="flex items-center gap-3">
+      <Badge color="brand">New</Badge>
+      <Input placeholder="Search..." />
+      <Button size="md" color="primary">Submit</Button>
     </div>
   );
 }`;
 
+const SectionLabel = ({ children }: { children: React.ReactNode }) => (
+    <p className="text-xs font-medium uppercase tracking-widest text-tertiary mb-4">{children}</p>
+);
+
 export const IntroductionPage = () => {
     return (
-        <div className="flex flex-col gap-16 max-w-3xl">
-            {/* Hero */}
+        <div className="flex flex-col gap-12 max-w-[760px]">
+
+            {/* ── Hero ── */}
             <div className="flex flex-col gap-4">
-                <Badge color="brand" type="pill-color" size="sm">Design System</Badge>
-                <h1 className="text-4xl font-semibold text-primary">Midwestern Design System</h1>
-                <p className="text-lg text-tertiary leading-relaxed">
-                    A React component library built for internal product teams. Consistent, accessible,
-                    and ready to ship — built on React Aria and styled with Tailwind CSS v4.
+                <p className="text-xs font-medium uppercase tracking-widest text-brand-secondary">
+                    Midwestern Design System
                 </p>
-            </div>
-
-            {/* Divider */}
-            <div className="border-t border-dashed border-secondary" />
-
-            {/* What's included */}
-            <div className="flex flex-col gap-6">
-                <h2 className="text-2xl font-semibold text-primary">What's included</h2>
-                <p className="text-md text-tertiary">
-                    {COMPONENTS.length} production-ready components across base UI and application UI categories.
+                <h1 className="text-4xl font-medium text-primary leading-tight">
+                    Build consistent products, faster.
+                </h1>
+                <p className="text-md text-secondary max-w-[560px] leading-relaxed">
+                    A React component library built on Untitled UI, styled to the Midwestern
+                    brand. Open-source, free to use, and built for teams shipping real products.
                 </p>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                    {COMPONENTS.map((name) => (
-                        <div key={name} className="flex items-center gap-2 text-sm text-secondary">
-                            <CheckCircle className="size-4 text-success-primary shrink-0" />
-                            {name}
-                        </div>
-                    ))}
+                <div className="flex items-center gap-3 mt-1">
+                    <Button href="/components/buttons" color="primary" size="sm">
+                        Browse components
+                    </Button>
+                    <Button
+                        href="https://github.com/sf840/mw-react-design-system"
+                        color="secondary"
+                        size="sm"
+                        iconLeading={LinkExternal01}
+                    >
+                        View on GitHub
+                    </Button>
                 </div>
             </div>
 
-            {/* Divider */}
-            <div className="border-t border-dashed border-secondary" />
+            <hr className="border-none h-px bg-border-secondary" />
 
-            {/* Getting started */}
-            <div className="flex flex-col gap-6">
-                <h2 className="text-2xl font-semibold text-primary">Getting started</h2>
-                <div className="flex flex-col gap-3">
-                    <h3 className="text-base font-semibold text-secondary">Install & run</h3>
-                    <CodeBlock code={installCode} />
-                </div>
-                <div className="flex flex-col gap-3">
-                    <h3 className="text-base font-semibold text-secondary">Basic usage</h3>
-                    <CodeBlock code={usageCode} />
-                </div>
-            </div>
-
-            {/* Divider */}
-            <div className="border-t border-dashed border-secondary" />
-
-            {/* Tech stack */}
-            <div className="flex flex-col gap-6">
-                <h2 className="text-2xl font-semibold text-primary">Tech stack</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {TECH_STACK.map(({ name, description, icon: Icon }) => (
-                        <div key={name} className="flex items-start gap-3 rounded-xl border border-secondary p-4 bg-primary">
-                            <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-brand-secondary">
-                                <Icon className="size-5 text-brand-primary" />
-                            </div>
-                            <div className="flex flex-col gap-0.5">
-                                <span className="text-sm font-semibold text-primary">{name}</span>
-                                <span className="text-sm text-tertiary">{description}</span>
+            {/* ── What's included ── */}
+            <div className="flex flex-col">
+                <SectionLabel>What's included</SectionLabel>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                    {INCLUDED.map(({ icon: Icon, title, description }) => (
+                        <div
+                            key={title}
+                            className="flex flex-col gap-3 rounded-lg border border-secondary bg-primary p-5"
+                        >
+                            <Icon className="size-5 text-brand-secondary" />
+                            <div className="flex flex-col gap-1">
+                                <p className="text-sm font-medium text-primary">{title}</p>
+                                <p className="text-sm text-tertiary leading-snug">{description}</p>
                             </div>
                         </div>
                     ))}
                 </div>
+            </div>
+
+            <hr className="border-none h-px bg-border-secondary" />
+
+            {/* ── Getting started ── */}
+            <div className="flex flex-col gap-4">
+                <SectionLabel>Getting started</SectionLabel>
+                <p className="text-sm text-secondary">
+                    This design system is pre-installed and ready to use. Import any component
+                    directly from its source file.
+                </p>
+                <CodeBlock code={usageCode} />
+            </div>
+
+            <hr className="border-none h-px bg-border-secondary" />
+
+            {/* ── Quick links ── */}
+            <div className="flex flex-col">
+                <SectionLabel>Quick links</SectionLabel>
+                <ul className="flex flex-col gap-2">
+                    {QUICK_LINKS.map(({ label, href, external }) => (
+                        <li key={label}>
+                            <a
+                                href={href}
+                                target={external ? "_blank" : undefined}
+                                rel={external ? "noreferrer" : undefined}
+                                className="group inline-flex items-center gap-1.5 text-sm text-brand-secondary transition duration-100 ease-linear hover:underline"
+                            >
+                                <span className="transition-transform duration-100 ease-linear group-hover:translate-x-0.5">→</span>
+                                {label}
+                                {external && <LinkExternal01 className="size-3 opacity-60" />}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
             </div>
         </div>
     );
