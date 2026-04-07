@@ -1,4 +1,5 @@
 import { XClose } from "@untitledui/icons";
+import { CodeBlock } from "@/site/shared/code-block";
 import { MidwesternLogo } from "@/components/foundations/logo/midwestern-logo";
 import { BrandColorsSection } from "@/site/pages/brand-colors-section";
 import { BrandTypographySection } from "@/site/pages/brand-typography-section";
