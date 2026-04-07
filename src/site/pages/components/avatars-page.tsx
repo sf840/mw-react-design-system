@@ -1,6 +1,7 @@
 import { User01 } from "@untitledui/icons";
 import { Avatar } from "@/components/base/avatar/avatar";
 import { AvatarLabelGroup } from "@/components/base/avatar/avatar-label-group";
+import { AvatarConfigurator } from "@/site/components/avatar-configurator";
 import { ComponentPageLayout } from "@/site/shared/component-page-layout";
 import { PreviewBlock } from "@/site/shared/preview-block";
 import { PropsTable } from "@/site/shared/props-table";
@@ -27,6 +28,8 @@ export const AvatarsPage = () => {
             filePath="src/components/base/avatar/avatar.tsx"
             sections={SECTIONS}
         >
+            <AvatarConfigurator />
+
             <PreviewBlock
                 id="example"
                 title="Avatar example"
