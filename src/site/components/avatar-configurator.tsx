@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check, Copy01, User01 } from "@untitledui/icons";
+import { Check, ChevronDown, Copy01, User01 } from "@untitledui/icons";
 import { Avatar } from "@/components/base/avatar/avatar";
 import { AvatarLabelGroup } from "@/components/base/avatar/avatar-label-group";
 import { AvatarProfilePhoto } from "@/components/base/avatar/avatar-profile-photo";
@@ -150,6 +150,7 @@ function AvatarPreview({ cfg }: { cfg: ConfigState }) {
 export const AvatarConfigurator = () => {
     const { copied, copy } = useClipboard();
 
+    const [showCode, setShowCode] = useState(true);
     const [componentType, setComponentType] = useState<ComponentType>("avatar");
     const [mode, setMode] = useState<Mode>("image");
     const [imageUrl, setImageUrl] = useState("https://www.untitledui.com/images/avatars/olivia-rhye?fm=webp&q=80");
@@ -342,18 +343,30 @@ export const AvatarConfigurator = () => {
             </div>
 
             {/* Code block */}
-            <div className="relative overflow-hidden rounded-lg bg-[#0d0d0d] p-4 pr-16">
+            <div className="overflow-hidden rounded-lg ring-1 ring-secondary">
                 <button
                     type="button"
-                    onClick={() => copy(code, "code")}
-                    className="absolute top-3 right-3 flex items-center gap-1.5 rounded px-2.5 py-1.5 text-xs font-medium text-white/60 transition duration-100 ease-linear hover:bg-white/10 hover:text-white/90"
+                    onClick={() => setShowCode((v) => !v)}
+                    className="flex w-full items-center justify-between bg-secondary px-4 py-2.5 text-xs font-semibold text-secondary transition duration-100 ease-linear hover:bg-secondary_hover"
                 >
-                    {copied === "code" ? <Check className="size-3.5" /> : <Copy01 className="size-3.5" />}
-                    {copied === "code" ? "Copied" : "Copy"}
+                    <span>Code</span>
+                    <ChevronDown className={`size-4 text-tertiary transition-transform duration-200 ${showCode ? "rotate-180" : ""}`} />
                 </button>
-                <pre className="overflow-x-auto text-sm font-mono leading-relaxed text-white/80">
-                    <code>{code}</code>
-                </pre>
+                {showCode && (
+                    <div className="relative bg-secondary p-4 pr-16">
+                        <button
+                            type="button"
+                            onClick={() => copy(code, "code")}
+                            className="absolute top-3 right-3 flex items-center gap-1.5 rounded px-2.5 py-1.5 text-xs font-medium text-tertiary transition duration-100 ease-linear hover:bg-primary_hover hover:text-secondary"
+                        >
+                            {copied === "code" ? <Check className="size-3.5" /> : <Copy01 className="size-3.5" />}
+                            {copied === "code" ? "Copied" : "Copy"}
+                        </button>
+                        <pre className="overflow-x-auto text-sm font-mono leading-relaxed text-brand-secondary">
+                            <code>{code}</code>
+                        </pre>
+                    </div>
+                )}
             </div>
         </div>
     );

@@ -16,16 +16,16 @@ export const CodeBlock = ({ code }: CodeBlockProps) => {
     };
 
     return (
-        <div className="relative rounded-xl bg-primary-solid overflow-hidden">
+        <div className="relative rounded-xl bg-secondary ring-1 ring-secondary overflow-hidden">
             <button
                 type="button"
                 onClick={handleCopy}
-                className="absolute top-3 right-3 flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-white/70 hover:text-white hover:bg-white/10 transition duration-100 ease-linear"
+                className="absolute top-3 right-3 flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-tertiary hover:text-secondary hover:bg-primary_hover transition duration-100 ease-linear"
             >
                 {copied ? <Check className="size-3.5" /> : <Copy01 className="size-3.5" />}
                 {copied ? "Copied" : "Copy"}
             </button>
-            <pre className="overflow-x-auto p-5 pr-20 text-sm text-white/80 font-mono leading-relaxed">
+            <pre className="overflow-x-auto p-5 pr-20 text-sm text-brand-secondary font-mono leading-relaxed">
                 <code>{code}</code>
             </pre>
         </div>
