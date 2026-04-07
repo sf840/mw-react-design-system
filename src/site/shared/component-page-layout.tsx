@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { LinkExternal01 } from "@untitledui/icons";
-import { Badge } from "@/components/base/badges/badges";
 import { Button } from "@/components/base/buttons/button";
 import { Breadcrumb } from "./breadcrumb";
 import { InstallBlock } from "./install-block";
@@ -11,7 +10,6 @@ interface ComponentPageLayoutProps {
     name: string;
     title: string;
     description: string;
-    isFree?: boolean;
     githubPath?: string;
     componentName: string;
     filePath: string;
@@ -24,7 +22,6 @@ export const ComponentPageLayout = ({
     name,
     title,
     description,
-    isFree = true,
     githubPath,
     componentName,
     filePath,
@@ -48,11 +45,6 @@ export const ComponentPageLayout = ({
                 <div className="flex flex-col gap-4">
                     <div className="flex items-center gap-3 flex-wrap">
                         <h1 className="text-3xl font-semibold text-primary">{title}</h1>
-                        {isFree && (
-                            <Badge color="success" type="pill-color" size="md">
-                                FREE
-                            </Badge>
-                        )}
                         {githubPath && (
                             <Button
                                 href={`https://github.com/sf840/mw-react-design-system/blob/main/${githubPath}`}
