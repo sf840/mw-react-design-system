@@ -83,8 +83,8 @@ const cssVariablesCode = `/* Midwestern brand primitives — src/styles/theme.cs
 --color-brand-100: #D5D9FD;  /* tint */`;
 
 const typographyCode = `/* Font stack */
-font-family: var(--font-body);    /* Inter, system-ui, sans-serif */
-font-family: var(--font-display); /* Inter, system-ui, sans-serif */
+font-family: var(--font-body);    /* TT Hoves, DM Sans, system-ui */
+font-family: var(--font-display); /* TT Hoves, DM Sans, system-ui */
 font-family: var(--font-mono);    /* JetBrains Mono, monospace */
 
 /* Type scale */
