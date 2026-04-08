@@ -34,7 +34,7 @@ const FontFamiliesGroup = () => {
             <h3 className="text-base font-semibold text-primary">Font families</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Card 1 — Primary */}
-                <div className="flex flex-col gap-4 overflow-hidden rounded-xl border border-secondary p-5 bg-primary">
+                <div className="flex flex-col gap-4 overflow-hidden rounded-none border border-secondary p-5 bg-primary">
                     <div className="overflow-hidden">
                         {/* Specimen — inline font-size so we display the actual scale token value */}
                         <span
@@ -61,7 +61,7 @@ const FontFamiliesGroup = () => {
                 </div>
 
                 {/* Card 2 — Mono */}
-                <div className="flex flex-col gap-4 overflow-hidden rounded-xl border border-secondary p-5 bg-primary">
+                <div className="flex flex-col gap-4 overflow-hidden rounded-none border border-secondary p-5 bg-primary">
                     <div className="overflow-hidden">
                         <span
                             className="font-mono font-medium text-primary leading-none whitespace-nowrap"
@@ -117,7 +117,7 @@ const TypeScaleGroup = () => {
     return (
         <div className="flex flex-col gap-4">
             <h3 className="text-base font-semibold text-primary">Type scale</h3>
-            <div className="overflow-hidden rounded-xl border border-secondary divide-y divide-secondary">
+            <div className="overflow-hidden rounded-none border border-secondary divide-y divide-secondary">
                 {TYPE_SCALE_ROWS.map((row) => (
                     <div key={row.twClass} className="flex">
                         {/* Specimen — 40% width, overflow-hidden to clip large display text */}
@@ -189,7 +189,7 @@ const ResponsiveScaleGroup = () => {
                     Display sizes scale down on mobile. Body and label sizes stay constant.
                 </p>
             </div>
-            <div className="overflow-hidden rounded-xl border border-secondary">
+            <div className="overflow-hidden rounded-none border border-secondary">
                 <table className="w-full text-sm">
                     <thead>
                         <tr className="bg-secondary_alt border-b border-secondary">
@@ -237,7 +237,7 @@ const FontWeightsGroup = () => {
     return (
         <div className="flex flex-col gap-4">
             <h3 className="text-base font-semibold text-primary">Font weights</h3>
-            <div className="overflow-hidden rounded-xl border border-secondary divide-y divide-secondary">
+            <div className="overflow-hidden rounded-none border border-secondary divide-y divide-secondary">
                 {FONT_WEIGHT_ROWS.map((row) => (
                     <div key={row.twClass} className="flex items-center gap-6 px-5 py-4 bg-primary">
                         {/* Live specimen */}
